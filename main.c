@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "board.h"
+#include "localplay.h"
 
 extern void resetBoard();
 
@@ -32,8 +33,9 @@ int main(){
 	struct Board gameBoard;
 	
 	initMode(mode);
-
 	resetBoard(gameBoard.board);
+
+	playLocal(gameBoard, 'H');
 
 	return 0;
 }
