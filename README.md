@@ -9,7 +9,7 @@ You can use the Makefile to make it easier.
 
 ## Usage
 
-Simply run the program in your terminal by either adding it to your PATH or using ./online-chess
+Simply run the program in your terminal by either adding it to your PATH or using ./online-chess.
 
 ## License
 
