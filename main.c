@@ -21,8 +21,10 @@ int main(){
 
 	struct Board gameBoard;
 	resetBoard(gameBoard.board);
-
-	printf("%c", gameBoard.board[0][0]);
+	printBoard(gameBoard.board);
+	int8_t coords[] = {0,0,4,4};
+	movePiece(gameBoard.board, coords);
+	printBoard(gameBoard.board);
 
 	return 0;
 }
