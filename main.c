@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdint.h>
+#include "board.h"
+
+extern void resetBoard();
 
 void printTitle(){
 	printf("\n----------------------------\n");
@@ -15,6 +18,9 @@ void printTitle(){
 
 int main(){
 	printTitle();
+
+	struct Board board;
+	resetBoard(board.board);
 
 	return 0;
 }
