@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdint.h>
+#include "board.h"
+
+extern void resetBoard();
 
 void printTitle(){
 	printf("\n----------------------------\n");
@@ -15,6 +18,13 @@ void printTitle(){
 
 int main(){
 	printTitle();
+
+	struct Board gameBoard;
+	resetBoard(gameBoard.board);
+	printBoard(gameBoard.board);
+	int8_t coords[] = {0,0,4,4};
+	movePiece(gameBoard.board, coords);
+	printBoard(gameBoard.board);
 
 	return 0;
 }
