@@ -1,5 +1,4 @@
-#include <stdint.h>
-#include <stdio.h>
+#pragma once
 
 struct Board {
 	char player1Name[50];
@@ -7,7 +6,5 @@ struct Board {
 
 	int8_t board[8][8];
 };
-
-extern struct Board board;
 
 void resetBoard(int8_t board[8][8]);

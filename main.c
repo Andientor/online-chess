@@ -19,8 +19,10 @@ void printTitle(){
 int main(){
 	printTitle();
 
-	struct Board board;
-	resetBoard(board.board);
+	struct Board gameBoard;
+	resetBoard(gameBoard.board);
+
+	printf("%c", gameBoard.board[0][0]);
 
 	return 0;
 }
