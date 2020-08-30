@@ -48,6 +48,9 @@ void movePiece(int8_t board[8][8], int8_t coords[4]){
 //modes - 1 = capture, 2 = moved
 void printBoard(int8_t board[8][8], int8_t colorMode, int8_t coords[4]){
 
+	//clear the screen and put cursor top left
+	printf("\x1B[2J\x1B[H");
+
 	for(int8_t i = 0; i < 8; i++){
 	
 		printf("   ---------------------------------\n ");
