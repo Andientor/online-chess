@@ -8,7 +8,7 @@ const int8_t correctMovement[2][2] = {{'A', 'H'}, {'1', '8'}};
 
 void grabInput(int8_t input[255]){
 
-	printf("Enter you move: ");
+	printf("Enter your move: ");
 
 	if(!fgets((char*) input, 255, stdin)){
 		printf("Error getting input!\n");
@@ -18,7 +18,7 @@ void grabInput(int8_t input[255]){
 
 int8_t parseInput(int8_t input[255], int8_t coords[4]){
 	
-	if(!strcmp((char*) input, "exit")){
+	if(!strcmp((char*) input, "exit\n")){
 		printf("Exiting\n");	
 		return 21;
 	}	
@@ -60,12 +60,26 @@ void playLocal(struct Board gameBoard, int8_t mode){
 
 	int8_t input[255];
 	int8_t coords[4];
+	int8_t running = 1;
 
 	input[200] = mode;
 
-	grabInput(input);
-	parseInput(input, coords);
-	movePiece(gameBoard.board, coords);
-	printBoard(gameBoard.board);
+	while (running){
+		int8_t code;
+	
+		grabInput(input);
+		code = parseInput(input, coords);
+		if(code > 0) {
+		
+			if(code == 21){
+				running = 0;
+				break;
+			}
+
+			movePiece(gameBoard.board, coords);
+			printBoard(gameBoard.board);
+		}
+		
+	}
 
 }
