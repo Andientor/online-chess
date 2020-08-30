@@ -8,6 +8,8 @@ const int8_t correctMovement[2][2] = {{'A', 'H'}, {'1', '8'}};
 
 void grabInput(int8_t input[255]){
 
+	printf("Enter you move: ");
+
 	if(!fgets((char*) input, 255, stdin)){
 		printf("Error getting input!\n");
 	}
@@ -17,8 +19,8 @@ void grabInput(int8_t input[255]){
 int8_t parseInput(int8_t input[255], int8_t coords[4]){
 	
 	if(!strcmp((char*) input, "exit")){
-		printf("Exiting...JK not implemented yet just use ctrl-c\n");	
-		return -1;
+		printf("Exiting\n");	
+		return 21;
 	}	
 
 	//movement
