@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "board.h"
+#include "localplay.h"
 
 extern void resetBoard();
 
-void printTitle(){
+void initMode(int8_t mode){
+	int8_t option[255];
+
 	printf("\n----------------------------\n");
 	printf("  Welcome to online chess!  \n");
 	printf("----------------------------\n\n");
@@ -14,17 +17,25 @@ void printTitle(){
 	printf("2. Play locally vs Human\n");
 	printf("3. Play online\n\n");
 	printf("Enter your choice: ");
+	fgets((char*) option, 255, stdin);
+	mode = option[0] - 48;
+
+	while(mode <= 0 || mode >= 4){
+		printf("Incorrect option!\n");
+		printf("Enter your choice: ");
+		fgets((char*) option, 255, stdin);
+		mode = option[0] - 48;
+	}
 }
 
 int main(){
-	printTitle();
-
+	int8_t mode = 0;
 	struct Board gameBoard;
+	
+	initMode(mode);
 	resetBoard(gameBoard.board);
-	printBoard(gameBoard.board);
-	int8_t coords[] = {0,0,4,4};
-	movePiece(gameBoard.board, coords);
-	printBoard(gameBoard.board);
+
+	playLocal(gameBoard, 'H');
 
 	return 0;
 }

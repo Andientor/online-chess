@@ -37,18 +37,18 @@ void resetBoard(int8_t board[8][8]){
 }
 
 void movePiece(int8_t board[8][8], int8_t coords[4]){
-	int8_t tempStorage = ' ';
-
-	tempStorage = board[coords[2]][coords[3]];
-	board[coords[2]][coords[3]] = board[coords[0]][coords[1]];
-	board[coords[0]][coords[1]] = tempStorage;
+	
+	board[coords[3]][coords[2]] = board[coords[1]][coords[0]];
+	board[coords[1]][coords[0]] = ' ';
+	
 }
 
 void printBoard(int8_t board[8][8]){
-	
+
 	for(int8_t i = 0; i < 8; i++){
 	
-		printf(" ---------------------------------\n");
+		printf("   ---------------------------------\n ");
+		putchar((7-i) + 65);
 		for (int8_t x = 0; x < 8; x++){
 			printf(" | ");
 			putchar(board[i][x]);
@@ -57,6 +57,12 @@ void printBoard(int8_t board[8][8]){
 
 	}
 
-	printf(" ---------------------------------\n");
+	printf("   ---------------------------------\n  ");
+	
+	for(int8_t i = 0; i < 8; i++){
+		printf("   %c", i + 49);
+	}
+
+	putchar('\n');
 
 }
