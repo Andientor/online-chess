@@ -46,15 +46,16 @@ void movePiece(int8_t board[8][8], int8_t coords[4]){
 }
 
 //modes - 1 = capture, 2 = moved
-void printBoard(int8_t board[8][8], int8_t colorMode, int8_t coords[4]){
+void printBoard(struct Board gameBoard, int8_t colorMode, int8_t coords[4]){
 
 	//clear the screen and put cursor top left
 	printf("\x1B[2J\x1B[H");
+	printf("   Black: %s\n", gameBoard.player2Name);
 
 	for(int8_t i = 0; i < 8; i++){
 	
 		printf("   ---------------------------------\n ");
-		putchar((7-i) + 65);
+		putchar((7-i) + 49);
 		for (int8_t x = 0; x < 8; x++){
 			int8_t isColored = 0;
 
@@ -63,7 +64,6 @@ void printBoard(int8_t board[8][8], int8_t colorMode, int8_t coords[4]){
 			//color character if marked by coords	
 			if(i == coords[1] && x == coords[0]){
 				isColored = 1;
-
 
 				switch (colorMode){
 					case 1:
@@ -90,10 +90,10 @@ void printBoard(int8_t board[8][8], int8_t colorMode, int8_t coords[4]){
 
 			}
 
-			if(isColored && board[i][x] == ' '){
+			if(isColored && gameBoard.board[i][x] == ' '){
 				putchar('_');
 			} else {
-				putchar(board[i][x]);
+				putchar(gameBoard.board[i][x]);
 			}
 
 			printf("%s", white);
@@ -105,9 +105,10 @@ void printBoard(int8_t board[8][8], int8_t colorMode, int8_t coords[4]){
 	printf("   ---------------------------------\n  ");
 	
 	for(int8_t i = 0; i < 8; i++){
-		printf("   %c", i + 49);
+		printf("   %c", i + 65);
 	}
 
 	putchar('\n');
+	printf("\n   White: %s\n", gameBoard.player1Name);
 
 }

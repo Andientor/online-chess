@@ -77,7 +77,7 @@ void playLocal(struct Board gameBoard, int8_t mode){
 			}
 
 			movePiece(gameBoard.board, coords);
-			printBoard(gameBoard.board, 2, coords);
+			printBoard(gameBoard, 2, coords);
 		}
 		
 	}
