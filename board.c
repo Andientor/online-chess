@@ -44,10 +44,11 @@ void movePiece(int8_t board[8][8], int8_t coords[4]){
 }
 
 void printBoard(int8_t board[8][8]){
-	
+
 	for(int8_t i = 0; i < 8; i++){
 	
-		printf(" ---------------------------------\n");
+		printf("   ---------------------------------\n ");
+		putchar((7-i) + 65);
 		for (int8_t x = 0; x < 8; x++){
 			printf(" | ");
 			putchar(board[i][x]);
@@ -56,6 +57,12 @@ void printBoard(int8_t board[8][8]){
 
 	}
 
-	printf(" ---------------------------------\n");
+	printf("   ---------------------------------\n  ");
+	
+	for(int8_t i = 0; i < 8; i++){
+		printf("   %c", i + 49);
+	}
+
+	putchar('\n');
 
 }
