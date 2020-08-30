@@ -37,11 +37,10 @@ void resetBoard(int8_t board[8][8]){
 }
 
 void movePiece(int8_t board[8][8], int8_t coords[4]){
-	int8_t tempStorage = ' ';
-
-	tempStorage = board[coords[2]][coords[3]];
-	board[coords[2]][coords[3]] = board[coords[0]][coords[1]];
-	board[coords[0]][coords[1]] = tempStorage;
+	
+	board[coords[3]][coords[2]] = board[coords[1]][coords[0]];
+	board[coords[1]][coords[0]] = ' ';
+	
 }
 
 void printBoard(int8_t board[8][8]){
