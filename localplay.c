@@ -64,6 +64,9 @@ void playLocal(struct Board gameBoard, int8_t mode){
 
 	input[200] = mode;
 
+	strcpy(gameBoard.player1Name, "Player 1");
+	strcpy(gameBoard.player2Name, "Player 2");
+
 	while (running){
 		int8_t code;
 	
