@@ -3,6 +3,7 @@
 #include <string.h>
 #include "board.h"
 #include "localplay.h"
+#include "engine.h"
 
 const int8_t correctMovement[2][2] = {{'A', 'H'}, {'1', '8'}};
 
@@ -79,8 +80,10 @@ void playLocal(struct Board gameBoard, int8_t mode){
 				break;
 			}
 
-			movePiece(gameBoard.board, coords);
-			printBoard(gameBoard, 2, coords);
+			if(validateMove(gameBoard.board, coords) == 1){
+				movePiece(gameBoard.board, coords);
+				printBoard(gameBoard, 2, coords);
+			}
 		}
 		
 	}
