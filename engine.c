@@ -32,7 +32,7 @@ int8_t validateMove(int8_t board[8][8], int8_t coords[4]){
 	vertMove = coords[3] - coords[1];
 
 	//make sure not same color piece
-	if(rawPiece & (1 << 5) && board[coords[3]][coords[2]]){
+	if(rawPiece & (1 << 5) && board[coords[3]][coords[2]] & (1 << 5)){
 		printf("Invalid move!\n");
 		return -1;
 	}
