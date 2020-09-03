@@ -5,9 +5,37 @@
 #include "engine.h"
 #include "board.h"
 
+int8_t collisions(int8_t board[8][8], int8_t coords[4]){
+	
+	int8_t vector[] = {coords[2] - coords[0], coords[3] - coords[1]};
+
+	//make the vectors into 1
+	for(int8_t i = 0; i < 2; i++){
+
+		if(vector[i]){
+			vector[i] = abs(vector[i])/vector[i];
+		}
+
+	}
+
+	for(int8_t i = 1; i < abs(coords[1] - coords[3]); i++){
+		
+		int8_t location[] = {coords[0] + (vector[0] * i), coords[1] + ( vector[1] * i)};
+
+		if(board[location[1]][location[0]] != ' '){
+			printf("Invalid move!\n");
+			return -1;
+		}
+
+	}
+
+	return 1;
+
+}
+
 int8_t validateMove(int8_t board[8][8], int8_t coords[4]){
 	
-	int8_t piece, rawPiece;
+	int8_t piece, rawPiece, target;
 	int8_t horiMove = 0, vertMove = 0, dir;
 
 	for(int8_t i = 0; i < 4; i++){
@@ -19,6 +47,7 @@ int8_t validateMove(int8_t board[8][8], int8_t coords[4]){
        
 	piece = board[coords[1]][coords[0]];
 	rawPiece = piece;
+	target = board[coords[3]][coords[2]];
 
 	if(piece == ' '){
 		printf("Not a valid piece!\n");
@@ -32,7 +61,7 @@ int8_t validateMove(int8_t board[8][8], int8_t coords[4]){
 	vertMove = coords[3] - coords[1];
 
 	//make sure not same color piece
-	if(rawPiece & (1 << 5) && board[coords[3]][coords[2]] & (1 << 5)){
+	if(((rawPiece & (1 << 5)) == (target & (1 << 5))) && target != ' '){
 		printf("Invalid move!\n");
 		return -1;
 	}
@@ -79,7 +108,7 @@ int8_t validateMove(int8_t board[8][8], int8_t coords[4]){
 				return -1;
 			}
 
-			break;
+			return 1;
 
 		case 'P':
 			dir = -1;
@@ -94,12 +123,12 @@ int8_t validateMove(int8_t board[8][8], int8_t coords[4]){
 			}
 
 			if(horiMove != 0){
-				if(abs(vertMove) > 1 || board[coords[3]][coords[2]] == ' '){
+				if(abs(vertMove) > 1 || target == ' '){
 					printf("Invalid Move!\n");
 					return -1;
 				}
 			} else {
-				if(board[coords[3]][coords[2]] != ' '){
+				if(target != ' '){
 					printf("Invalid Move!\n");
 					return -1;
 				}
@@ -114,6 +143,6 @@ int8_t validateMove(int8_t board[8][8], int8_t coords[4]){
 
 	}
 
-	return 1;
+	return collisions(board, coords);
 
 }
